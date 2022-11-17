@@ -5,6 +5,7 @@ pipeline{
         stage('Build'){
             steps{
                 echo 'Building..'
+                mvn clean package -DskipTests
             }
         }
 
@@ -17,6 +18,7 @@ pipeline{
         stage('Deploy'){
             steps{
                 echo 'Deploying...'
+                java -jar ./target/*.jar
             }
         }
 
