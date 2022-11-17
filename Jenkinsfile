@@ -1,11 +1,14 @@
 pipeline{
     agent any
+    tools {
+        maven '-apache-maven-3.0.5'
+    }
 
     stages{
         stage('Build'){
             steps{
                 echo 'Building..'
-                mvn clean package -DskipTests
+                sh 'mvn clean package -DskipTests'
             }
         }
 
@@ -18,7 +21,7 @@ pipeline{
         stage('Deploy'){
             steps{
                 echo 'Deploying...'
-                java -jar ./target/*.jar
+                sh 'java -jar ./target/*.jar'
             }
         }
 
